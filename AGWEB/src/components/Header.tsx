@@ -9,7 +9,7 @@ export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
-    const linkColor = "#1C5937";
+    const linkColor = "#FFFFFF";
     const linkHover = "#0140BA";
 
     const scrollToSection = (sectionId: string) => {
@@ -33,7 +33,7 @@ export default function Header() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className={`w-full fixed top-0 left-0 z-50 transition-colors duration-300 ${
-                scrolled ? "bg-white shadow-md" : "bg-transparent"
+                scrolled ? "bg-green-900 shadow-md" : "bg-transparent"
             }`}
         >
             <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
@@ -41,7 +41,7 @@ export default function Header() {
                 <div className="flex items-center gap-2">
                     <Link to="/" className="flex items-center gap-2">
                         <img
-                            src="/public/icons/Logo_nv.svg"
+                            src="/icons/AssetLogo1.svg"
                             alt="Agromaps Logo"
                             className="h-10 w-auto"
                         />
@@ -94,7 +94,7 @@ export default function Header() {
                 <div className="flex md:hidden items-center gap-4">
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="text-[#1C5937] focus:outline-none"
+                        className="text-[#FFFFFF] focus:outline-none"
                     >
                         {isOpen ? <X size={28} /> : <Menu size={28} />}
                     </button>

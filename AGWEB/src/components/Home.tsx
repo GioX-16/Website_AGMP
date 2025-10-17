@@ -71,7 +71,7 @@ const Home: React.FC = () => {
             {/* Imagen base - solo visible en desktop */}
             {!isMobile && (
                 <img
-                    src="/images/BGbase.jpg"
+                    src="/images/newCover.png"
                     alt="Agromaps Base"
                     className="absolute inset-0 w-full h-full object-cover"
                 />

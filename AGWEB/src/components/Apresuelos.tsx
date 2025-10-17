@@ -7,7 +7,7 @@ const SoilSection: React.FC = () => {
         <section
             className="relative w-full bg-white bg-cover bg-center py-20 px-6 md:px-20"
             style={{
-                backgroundImage: "url('/images/bg_aprendeagmp.png')", // ⚡ Cambia esta ruta a tu imagen con mockup
+                backgroundImage: "url('/images/bgapresuelo.png')", // ⚡ Cambia esta ruta a tu imagen con mockup
             }}
         >
             {/* 🔹 Título superior */}

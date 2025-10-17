@@ -50,7 +50,7 @@ export default function Navbar() {
                 <div className="hidden md:flex items-center gap-2">
                     <Link to="/" className="flex items-center gap-2">
                         <img
-                            src="/icons/Logo_nv.svg"
+                            src="/images/AssetLogo.png"
                             alt="Agromaps Logo"
                             className="h-10 w-auto"
                         />
