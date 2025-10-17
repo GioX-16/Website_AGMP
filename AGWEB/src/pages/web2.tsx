@@ -4,6 +4,7 @@ import Aprender from "../components/Aprender";
 import Apresuelo from "../components/Apresuelos";
 import IArecom from "../components/IArecom";
 import IABenefits from "../components/IABenefits";
+import IAStudies from "../components/Studies";
 import Footer from "../components/Footer";
 import { useScrollToTop } from "../hooks/useScrollToTop";
 
@@ -20,6 +21,7 @@ export default function Web2() {
             <Apresuelo />
             <IArecom />
             <IABenefits />
+            <IAStudies />
             <Footer />
         </>
     );
