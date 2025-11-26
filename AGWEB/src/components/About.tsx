@@ -58,7 +58,7 @@ export default function About() {
                     {/* Mockup del celular */}
                     <div className="relative z-10">
                         <img
-                            src="@/images/About/HomeScreenAgroMaps.svg"
+                            src="/images/About/HomeScreenAgroMaps.svg"
                             alt="Interfaz de la app Agromaps"
                             className="w-40 drop-shadow-2xl sm:w-44 md:w-48 lg:w-56 xl:w-64"
                         />
