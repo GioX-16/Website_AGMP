@@ -1,193 +1,111 @@
-import { motion } from "framer-motion";
-
-// Componente para las barras laterales (izquierda y derecha)
-interface ImageBarProps {
-    defaultSrc: string;
-    hoverSrc: string;
-    alt: string;
-    className?: string;
-}
-
-const ImageBar = ({ defaultSrc, hoverSrc, alt, className = "" }: ImageBarProps) => (
-    <div className={`relative w-20 h-80 rounded-full overflow-hidden group cursor-pointer shadow-lg ${className}`}>
-        <img
-            src={defaultSrc}
-            alt={alt}
-            className="w-full h-full object-cover group-hover:hidden transition duration-500"
-        />
-        <img
-            src={hoverSrc}
-            alt={`${alt}-hover`}
-            className="w-full h-full object-cover hidden group-hover:block transition duration-500"
-        />
-    </div>
-);
-
-// Componente para la imagen central
-interface CenterImageProps {
-    defaultSrc: string;
-    hoverSrc: string;
-    alt: string;
-    className?: string;
-    size?: 'small' | 'medium' | 'large' | 'custom';
-    customWidth?: string;
-    customHeight?: string;
-}
-
-const CenterImage = ({ 
-    defaultSrc, 
-    hoverSrc, 
-    alt, 
-    className = "", 
-    size = 'medium',
-    customWidth,
-    customHeight 
-}: CenterImageProps) => {
-    const getSizeClasses = () => {
-        switch (size) {
-            case 'small':
-                return 'w-80 h-48'; // 320x192
-            case 'medium':
-                return 'w-100 h-60'; // 400x240 (tamaño actual)
-            case 'large':
-                return 'w-120 h-72'; // 480x288 (más grande)
-            case 'custom':
-                return `${customWidth || 'w-100'} ${customHeight || 'h-60'}`;
-            default:
-                return 'w-100 h-60';
-        }
-    };
-
-    return (
-        <div className={`relative ${getSizeClasses()} rounded-2xl overflow-hidden shadow-xl group cursor-pointer ${className}`}>
-            <img
-                src={defaultSrc}
-                alt={alt}
-                className="w-full h-full object-cover group-hover:hidden transition duration-600"
-            />
-            <img
-                src={hoverSrc}
-                alt={`${alt}-hover`}
-                className="w-full h-full object-cover hidden group-hover:block transition duration-1000"
-            />
-        </div>
-    );
-};
-
+// app/components/Hero.tsx
 export default function Hero() {
-    const brands = [
-        "/icons/CarouselLOG.svg",
-        "/icons/CarouselLOG.svg",
-        "/icons/CarouselLOG.svg",
-        "/icons/CarouselLOG.svg",
-        "/icons/CarouselLOG.svg",
-    ];
-
-    // Configuración de imágenes (default + hover)
-    const leftImages = [
-        {
-            defaultSrc: "/images/Hero/Property1=Default.png",
-            hoverSrc: "/images/Hero/Property1=Variant2.png",
-        },
-        {
-            defaultSrc: "/images/Hero/Property2=Default.png",
-            hoverSrc: "/images/Hero/Property2=Variant2.png",
-        },
-    ];
-
-    const centerImage = {
-        defaultSrc: "/images/Hero/Property3=Default.png",
-        hoverSrc: "/images/Hero/Property3=Variant2.png",
-    };
-
-    const rightImages = [
-        {
-            defaultSrc: "/images/Hero/Property4=Default.png",
-            hoverSrc: "/images/Hero/Property4=Variant2.png",
-        },
-        {
-            defaultSrc: "/images/Hero/Property5=Default.png",
-            hoverSrc: "/images/Hero/Property5=Variant2.png",
-        },
-    ];
-
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative w-full h-[100vh] flex flex-col justify-between items-center bg-white overflow-hidden"
-        >
-            {/* Background con imagen personalizada solo en móvil */}
-            <div 
-                className="absolute inset-0 md:hidden bg-center bg-no-repeat bg-cover"
-                style={{
-                    backgroundImage: "url('/images/BG_heromob.svg')"
-                }}
-            ></div>
+        <section className=" overflow-hidden bg-gradient-to-b from-emerald-50 to-emerald-100">
+            <div className="mx-auto flex min-h-screen max-w-6xl flex-col items-center px-4 py-10 sm:py-16 lg:py-20 md:flex-row md:gap-12">
+                {/* COLUMNA IZQUIERDA: TEXTO */}
+                <div className="flex-1 space-y-6 text-center md:text-left">
+                    <span className="inline-flex items-center justify-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-800">
+                        Agricultura inteligente · Datos de suelo accionables
+                    </span>
 
-            {/* Contenedor central con layout horizontal y posicionamiento individual */}
-            <div className="flex flex-row items-center justify-center gap-10 mt-16 relative">
-                {/* Primera imagen izquierda - Posicionada más arriba */}
-                <ImageBar
-                    defaultSrc={leftImages[0].defaultSrc}
-                    hoverSrc={leftImages[0].hoverSrc}
-                    alt="Left-1"
-                    className="mt-0"
-                />
+                    <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+                        Convierte tus{" "}
+                        <span className="text-emerald-700">suelos en datos</span>
+                        {" "}y tus datos en rendimiento.
+                    </h1>
 
-                {/* Segunda imagen izquierda - Posicionada más abajo */}
-                <ImageBar
-                    defaultSrc={leftImages[1].defaultSrc}
-                    hoverSrc={leftImages[1].hoverSrc}
-                    alt="Left-2"
-                    className="mt-20"
-                />
+                    <p className="mx-auto max-w-xl text-sm text-slate-600 sm:text-base">
+                        AGROMAPS centraliza análisis de suelo, mapas productivos y
+                        recomendaciones de fertilización para que productores, cooperativas
+                        y técnicos tomen decisiones con evidencia y no solo con intuición.
+                    </p>
 
-                {/* Imagen central - En el medio con su propia altura */}
-                <CenterImage
-                    defaultSrc={centerImage.defaultSrc}
-                    hoverSrc={centerImage.hoverSrc}
-                    alt="Center"
-                    className="mx-6 mt-35"
-                    size="medium"
-                />
+                    {/* BOTONES */}
+                    <div className="flex flex-col items-center justify-center gap-3 sm:flex-row md:justify-start">
+                        <button className="inline-flex w-full items-center justify-center rounded-full bg-emerald-700 px-6 py-2.5 text-sm font-medium text-white shadow-md transition hover:bg-emerald-800 sm:w-auto">
+                            Probar demo gratuita
+                        </button>
+                        <button className="inline-flex w-full items-center justify-center rounded-full border border-emerald-700 bg-white/80 px-6 py-2.5 text-sm font-medium text-emerald-700 transition hover:bg-white sm:w-auto">
+                            Agendar una llamada
+                        </button>
+                    </div>
 
-                {/* Primera imagen derecha - Posicionada más abajo */}
-                <ImageBar
-                    defaultSrc={rightImages[0].defaultSrc}
-                    hoverSrc={rightImages[0].hoverSrc}
-                    alt="Right-1"
-                    className="mt-20"
-                />
-
-                {/* Segunda imagen derecha - Posicionada más arriba */}
-                <ImageBar
-                    defaultSrc={rightImages[1].defaultSrc}
-                    hoverSrc={rightImages[1].hoverSrc}
-                    alt="Right-2"
-                    className="mt-0"
-                />
-            </div>
-
-            {/* Carousel de marcas - Responsive */}
-            <div className="w-full overflow-hidden relative mt-0 mb-2 h-20 sm:h-24 md:h-28 lg:h-32">
-                <motion.div
-                    className="flex items-center w-[180%] sm:w-[200%] md:w-[220%] lg:w-[240%] gap-6 sm:gap-8 md:gap-12 lg:gap-16"
-                    animate={{ x: ["0%", "-50%"] }}
-                    transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
-                >
-                    {brands.concat(brands).map((logo, i) => (
-                        <div key={i} className="flex items-center">
-                            <img
-                                src={logo}
-                                alt={`AGROMAPS Logo ${i}`}
-                                className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto object-contain"
-                            />
+                    {/* PEQUEÑAS MÉTRICAS */}
+                    <div className="mx-auto grid max-w-md grid-cols-2 gap-4 pt-4 sm:pt-6">
+                        <div>
+                            <p className="text-lg font-semibold text-slate-900">5×</p>
+                            <p className="text-xs text-slate-500">
+                                Retorno anual promedio al ajustar fertilización según análisis
+                                de suelo.
+                            </p>
                         </div>
-                    ))}
-                </motion.div>
+                        <div>
+                            <p className="text-lg font-semibold text-slate-900">60 %</p>
+                            <p className="text-xs text-slate-500">
+                                De productores aún trabajan de forma empírica. AGROMAPS cierra
+                                esa brecha.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* COLUMNA DERECHA: VISUAL */}
+                <div className="mt-10 flex-1 md:mt-0">
+                    <div className="relative mx-auto max-w-md">
+                        {/* Tarjeta principal con imagen de fondo */}
+                        <div className="aspect-[4/3] overflow-hidden rounded-3xl bg-slate-200 shadow-xl ring-1 ring-black/5">
+                            <img
+                                src="/images/Hero/hero-cultivos.png" // cámbialo por tu imagen
+                                alt="Productor revisando cultivos con datos en pantalla"
+                                className="h-full w-full object-cover"
+                            />
+                            {/* Degradado para que se lean los datos */}
+                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-emerald-900/55 via-transparent to-transparent" />
+
+                            {/* Tarjetita principal de indicadores */}
+                            <div className="absolute bottom-3 left-3 right-3 flex flex-col gap-3 text-xs sm:text-sm">
+                                <div className="flex items-center justify-between rounded-2xl bg-white/95 px-3 py-2 backdrop-blur-sm">
+                                    <div>
+                                        <p className="font-medium text-slate-900">
+                                            Lote 3 · Maíz de primera
+                                        </p>
+                                        <p className="text-[11px] text-slate-500">
+                                            Suelo franco arenoso · 4 ha monitoreadas
+                                        </p>
+                                    </div>
+                                    <p className="text-right text-sm font-semibold text-emerald-700">
+                                        +27 % rendimiento
+                                    </p>
+                                </div>
+
+                                <div className="flex gap-2">
+                                    <div className="flex-1 rounded-2xl bg-emerald-900/95 px-3 py-2 text-white backdrop-blur-sm">
+                                        <p className="text-[11px] uppercase tracking-wide text-emerald-200">
+                                            Recomendación de fertilización
+                                        </p>
+                                        <p className="text-xs font-medium">
+                                            Aplicar 140 kg/ha N · 60 kg/ha P₂O₅ · 40 kg/ha K₂O
+                                        </p>
+                                    </div>
+
+                                    <div className="hidden flex-col gap-1 rounded-2xl bg-white/90 px-3 py-2 text-[11px] text-slate-600 backdrop-blur-sm sm:flex">
+                                        <p>pH: 6.4</p>
+                                        <p>MO: 2.1 %</p>
+                                        <p>Textura: franco</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Badge flotante arriba a la derecha (solo desktop) */}
+                        <div className="absolute -top-4 right-4 hidden items-center gap-2 rounded-2xl bg-white px-3 py-2 text-xs text-slate-700 shadow-lg md:flex">
+                            <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                            Mapa actualizado hace 2 horas
+                        </div>
+                    </div>
+                </div>
             </div>
-        </motion.section>
+        </section>
     );
 }

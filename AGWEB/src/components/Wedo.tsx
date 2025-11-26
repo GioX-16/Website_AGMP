@@ -1,14 +1,8 @@
-import { motion } from "framer-motion";
-import mockupImage from "/images/Mckoup.svg";
-
 export default function WhatWeDo() {
     return (
         <section
             id="agromapss"
             className="relative w-full py-20 bg-center bg-no-repeat bg-cover"
-            style={{
-                backgroundImage: "url('/images/BG_Hacemos.png')", 
-            }}
         >
             {/* Overlay para dar contraste */}
             <div className="absolute inset-0 bg-Black/70"></div>
@@ -37,19 +31,6 @@ export default function WhatWeDo() {
                 >
                     Ver Web de Aplicación
                 </a>
-
-                {/* Imagen del Mockup con animación */}
-                <motion.div
-                    className="mt-12"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 200 }}
-                >
-                    <img
-                        src={mockupImage}
-                        alt="Agromaps Mockup"
-                        className="mx-auto max-w-full drop-shadow-2xl"
-                    />
-                </motion.div>
             </div>
         </section>
     );

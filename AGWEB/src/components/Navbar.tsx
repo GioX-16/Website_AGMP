@@ -1,53 +1,90 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { motion } from "framer-motion"; // 👈 Animación
+import { motion } from "framer-motion";
+
+type NavItem = { name: string; id: string };
+
+const desktopLinks: NavItem[] = [
+    { name: "Nosotros", id: "aboutt" },
+    { name: "Agromaps", id: "agromapss" },
+    { name: "IA", id: "cultivo" },
+    { name: "Departamentos", id: "Dep" },
+    { name: "Equipo", id: "equipo" },
+];
+
+const mobileLinks: NavItem[] = [
+    { name: "Inicio", id: "hero" },
+    { name: "Nosotros", id: "aboutt" },
+    { name: "Team", id: "team" },
+    { name: "Agromaps", id: "agromaps" },
+];
+
+const navVariants = {
+    visible: { y: 0, opacity: 1 },
+    hidden: { y: -80, opacity: 0 },
+};
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [showNav, setShowNav] = useState(true);
+    const lastScrollY = useRef(0);
 
-    const linkColor = "#1C5937";
-    const linkHover = "#0140BA";
-    const buttonColor = "#1C5937";
-    const buttonHover = "#145BE5";
-
-    // Función para scroll suave a secciones
+    // Scroll suave a secciones
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
         if (element) {
             element.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+                behavior: "smooth",
+                block: "start",
             });
         }
     };
 
-    // Detectar scroll
+    // Detectar scroll: fondo + mostrar/ocultar navbar según dirección
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 20) {
-                setScrolled(true);
+            const currentScroll = window.scrollY;
+
+            // Cambiar fondo
+            setScrolled(currentScroll > 20);
+
+            // Evitar ocultar cuando está casi arriba del todo
+            if (currentScroll < 10) {
+                setShowNav(true);
             } else {
-                setScrolled(false);
+                const diff = currentScroll - lastScrollY.current;
+
+                // Scroll hacia abajo (baja bastante) → ocultar
+                if (diff > 5) {
+                    setShowNav(false);
+                }
+                // Scroll hacia arriba (sube un poco) → mostrar
+                else if (diff < -5) {
+                    setShowNav(true);
+                }
             }
+
+            lastScrollY.current = currentScroll;
         };
 
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     return (
         <motion.nav
-            initial={{ y: -80, opacity: 0 }} // 👈 animación de entrada
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className={`w-full fixed top-0 left-0 z-50 transition-colors duration-300 ${scrolled ? "bg-white shadow-md" : "bg-transparent"
+            variants={navVariants}
+            initial="visible"
+            animate={showNav || isOpen ? "visible" : "hidden"}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className={`fixed top-0 left-0 z-50 w-full border-b border-transparent backdrop-blur-sm transition-colors duration-300 ${scrolled ? "bg-white/95 border-slate-100 shadow-sm" : "bg-transparent"
                 }`}
         >
-            <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-                {/* PC - Logo izquierda */}
-                <div className="hidden md:flex items-center gap-2">
+            <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+                {/* LOGO DESKTOP */}
+                <div className="hidden items-center gap-2 md:flex">
                     <Link to="/" className="flex items-center gap-2">
                         <img
                             src="/images/AssetLogo.png"
@@ -57,58 +94,8 @@ export default function Navbar() {
                     </Link>
                 </div>
 
-                {/* PC - Navs en el centro */}
-                <div className="hidden md:flex items-center gap-8">
-                    {[
-                        { name: "Nosotros", id: "aboutt" },
-                        { name: "Agromaps", id: "agromapss" },
-                        { name: "IA", id: "cultivo" },
-                        { name: "Departamentos", id: "Dep" },
-                        { name: "Equipo", id: "equipo" },
-                        
-                    ].map((item, idx) => (
-                        <button
-                            key={idx}
-                            onClick={() => scrollToSection(item.id)}
-                            className="font-semibold transition-colors cursor-pointer"
-                            style={{ color: linkColor }}
-                            onMouseEnter={(e) =>
-                                ((e.target as HTMLElement).style.color = linkHover)
-                            }
-                            onMouseLeave={(e) =>
-                                ((e.target as HTMLElement).style.color = linkColor)
-                            }
-                        >
-                            {item.name}
-                        </button>
-                    ))}
-                </div>
-
-                {/* PC - Botón derecha */}
-                <div className="hidden md:flex">
-                    <button
-                        onClick={() => scrollToSection("contacto")}
-                        className="px-4 py-2 rounded-xl font-semibold text-white transition-colors cursor-pointer"
-                        style={{ backgroundColor: buttonColor }}
-                        onMouseEnter={(e) =>
-                            ((e.target as HTMLElement).style.backgroundColor = buttonHover)
-                        }
-                        onMouseLeave={(e) =>
-                            ((e.target as HTMLElement).style.backgroundColor = buttonColor)
-                        }
-                    >
-                        Contáctanos
-                    </button>
-                </div>
-
-                {/* Mobile - Menú hamburguesa */}
-                <div className="flex md:hidden w-full justify-between items-center">
-                    <button
-                        onClick={() => setIsOpen(!isOpen)}
-                        className="text-[#1C5937] focus:outline-none"
-                    >
-                        {isOpen ? <X size={28} /> : <Menu size={28} />}
-                    </button>
+                {/* LOGO + HAMBURGER MOBILE */}
+                <div className="flex w-full items-center justify-between md:hidden">
                     <Link to="/" className="flex items-center">
                         <img
                             src="/icons/LogoSV.svg"
@@ -116,56 +103,70 @@ export default function Navbar() {
                             className="h-10 w-auto"
                         />
                     </Link>
+
+                    <button
+                        onClick={() => setIsOpen((prev) => !prev)}
+                        className="text-[#1C5937] focus:outline-none"
+                        aria-label="Abrir menú"
+                    >
+                        {isOpen ? <X size={28} /> : <Menu size={28} />}
+                    </button>
+                </div>
+
+                {/* LINKS DESKTOP */}
+                <div className="hidden flex-1 items-center justify-center gap-8 md:flex">
+                    {desktopLinks.map((item) => (
+                        <button
+                            key={item.id}
+                            onClick={() => scrollToSection(item.id)}
+                            className="text-sm font-semibold text-[#1C5937] transition-colors hover:text-[#0140BA]"
+                        >
+                            {item.name}
+                        </button>
+                    ))}
+                </div>
+
+                {/* CTA DESKTOP */}
+                <div className="hidden md:flex">
+                    <button
+                        onClick={() => scrollToSection("contacto")}
+                        className="rounded-xl bg-[#1C5937] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#145BE5]"
+                    >
+                        Contáctanos
+                    </button>
                 </div>
             </div>
 
-            {/* Mobile - Menu desplegable */}
+            {/* MENÚ MOBILE DESPLEGABLE */}
             {isOpen && (
                 <motion.div
-                    initial={{ opacity: 0, y: -20 }} // 👈 animación de apertura
+                    initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4 }}
-                    className="md:hidden flex flex-col items-center gap-8 py-6 bg-white shadow-md"
+                    transition={{ duration: 0.3 }}
+                    className="flex flex-col items-center gap-6 border-t border-slate-100 bg-white py-6 shadow-md md:hidden"
                 >
-                    {[
-                        { name: "Inicio", id: "hero" },
-                        { name: "Nosotros", id: "aboutt" },
-                        { name: "Team", id: "team" },
-                        { name: "Agromaps", id: "agromaps" }
-                    ].map((item, idx) => (
+                    {mobileLinks.map((item) => (
                         <button
-                            key={idx}
+                            key={item.id}
                             onClick={() => {
                                 scrollToSection(item.id);
                                 setIsOpen(false);
                             }}
-                            className="font-semibold text-lg transition-colors cursor-pointer"
-                            style={{ color: linkColor }}
-                            onMouseEnter={(e) =>
-                                ((e.target as HTMLElement).style.color = linkHover)
-                            }
-                            onMouseLeave={(e) =>
-                                ((e.target as HTMLElement).style.color = linkColor)
-                            }
+                            className="text-lg font-semibold text-[#1C5937] transition-colors hover:text-[#0140BA]"
                         >
                             {item.name}
                         </button>
                     ))}
 
-                    <Link
-                        to="#contacto"
-                        className="px-8 py-2 rounded-xl font-semibold text-white transition-colors"
-                        style={{ backgroundColor: buttonColor }}
-                        onMouseEnter={(e) =>
-                            ((e.target as HTMLElement).style.backgroundColor = buttonHover)
-                        }
-                        onMouseLeave={(e) =>
-                            ((e.target as HTMLElement).style.backgroundColor = buttonColor)
-                        }
-                        onClick={() => setIsOpen(false)}
+                    <button
+                        onClick={() => {
+                            scrollToSection("contacto");
+                            setIsOpen(false);
+                        }}
+                        className="rounded-xl bg-[#1C5937] px-8 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#145BE5]"
                     >
                         Contáctanos
-                    </Link>
+                    </button>
                 </motion.div>
             )}
         </motion.nav>
