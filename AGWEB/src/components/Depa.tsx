@@ -33,7 +33,7 @@ const Card: React.FC<CardProps> = ({
     return (
         <motion.div
             className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 cursor-pointer group"
-            whileHover={{ 
+            whileHover={{
                 scale: 1.02,
                 backgroundColor: "#1C5937"
             }}
@@ -59,23 +59,23 @@ const Card: React.FC<CardProps> = ({
             {/* Contenido */}
             <div className="p-4 group-hover:text-white transition-colors duration-500">
                 <p className="text-sm text-green-700 font-medium group-hover:text-green-200 flex items-center justify-center gap-2">
-                    <svg 
-                        className="w-4 h-4" 
-                        fill="currentColor" 
+                    <svg
+                        className="w-4 h-4"
+                        fill="currentColor"
                         viewBox="0 0 20 20"
                     >
-                        <path 
-                            fillRule="evenodd" 
-                            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" 
-                            clipRule="evenodd" 
+                        <path
+                            fillRule="evenodd"
+                            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                            clipRule="evenodd"
                         />
                     </svg>
                     {location}
                 </p>
-                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-white">{title}</h3>
-                <p className="text-sm text-gray-600 group-hover:text-gray-200">{description}</p>
-                <p className="text-sm text-gray-500 mt-2 group-hover:text-gray-300">{time}</p>
-                <p className="text-sm font-mono text-gray-700 group-hover:text-gray-300">{coords}</p>
+                <h3 className="text-lg poppins-regular text-gray-900 group-hover:text-white">{title}</h3>
+                <p className="text-sm poppins-regular text-gray-600 group-hover:text-gray-200">{description}</p>
+                <p className="text-sm poppins-regular text-gray-500 mt-2 group-hover:text-gray-300">{time}</p>
+                <p className="text-sm poppins-regular text-gray-700 group-hover:text-gray-300">{coords}</p>
             </div>
         </motion.div>
     );
@@ -91,16 +91,16 @@ const Departamentos: React.FC = () => {
             <div className="absolute inset-0 bg-white/70"></div>
 
             <div className="relative max-w-7xl mx-auto text-center">
-                <h2 className="text-3xl font-bold font-[Poppins] text-gray-900">
+                <h2 className="text-3xl poppins-medium text-gray-900">
                     Departamentos
                 </h2>
-                <p className="text-gray-700 mt-2 font-[Poppins]">
+                <p className="text-gray-700 mt-2 poppins-regular">
                     En estos departamentos presentados son los distintos lugares donde se cultiva y se trabaja la siembra y suelos.
                 </p>
 
                 {/* Cards */}
                 <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <a 
+                    <a
                         href={`https://www.google.com/maps/place/Matagalpa/@12.9296519,-85.960477,7283m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8f724830f9561d2f:0x1793a46db7ccdb99!8m2!3d12.9290069!4d-85.9151211!16zL20vMDZ4Z3dj!5m1!1e1?entry=ttu&g_ep=EgoyMDI1MDgyNC4wIKXMDSoASAFQAw%3D%3D`}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -116,7 +116,7 @@ const Departamentos: React.FC = () => {
                             imgHover={UbimatSvg}
                         />
                     </a>
-                    <a 
+                    <a
                         href={`https://www.google.com/maps/place/Estel%C3%AD/@13.0897666,-86.3813784,7279m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8f718c42c00bc1ad:0x90de1ab352954a6f!8m2!3d13.0851139!4d-86.3630197!16zL20vMDNfMjRi!5m1!1e1?entry=ttu&g_ep=EgoyMDI1MDgyNC4wIKXMDSoASAFQAw%3D%3D`}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -132,7 +132,7 @@ const Departamentos: React.FC = () => {
                             imgHover={UbiesteSvg}
                         />
                     </a>
-                    <a 
+                    <a
                         href={`https://www.google.com/maps/place/Chinandega/@12.6238477,-87.1987512,14585m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8f70f1ec32d7ec3f:0x53e0a1538f9602ec!8m2!3d12.6234721!4d-87.1273253!16zL20vMDc4dDB2!5m1!1e1?entry=ttu&g_ep=EgoyMDI1MDgyNC4wIKXMDSoASAFQAw%3D%3D`}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -148,7 +148,7 @@ const Departamentos: React.FC = () => {
                             imgHover={UbichiinSvg}
                         />
                     </a>
-                    <a 
+                    <a
                         href={`https://www.google.com/maps/place/Jinotega/@13.0898785,-86.0199027,7279m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8f723e88cc57ff89:0xb9bb1035556496ca!8m2!3d13.0883907!4d-85.9993997!16zL20vMDM3NnR6!5m1!1e1?entry=ttu&g_ep=EgoyMDI1MDgyNC4wIKXMDSoASAFQAw%3D%3D`}
                         target="_blank"
                         rel="noopener noreferrer"

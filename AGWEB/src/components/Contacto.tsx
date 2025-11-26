@@ -4,11 +4,11 @@ import React from "react";
 
 const Contacto: React.FC = () => {
     return (
-        <section  className="py-16 px-6 bg-white" id="contacto">
+        <section className="py-16 px-6 bg-white" id="contacto">
             <div className="max-w-7xl mx-auto">
                 {/* Título */}
-                <h2 className="text-3xl md:text-4xl font-bold text-center text-green-900 mb-10 font-[Poppins]">
-                    HABLA CON NOSOTROS
+                <h2 className="text-3xl md:text-4xl poppins-extrabold text-center text-green-900 mb-10">
+                    ¿Quieres saber más?
                 </h2>
 
                 {/* Contenedor principal */}
@@ -21,7 +21,7 @@ const Contacto: React.FC = () => {
                         transition={{ duration: 0.7 }}
                         viewport={{ once: true }}
                     >
-                        <h3 className="text-xl font-bold mb-6">CONTÁCTANOS</h3>
+                        <h3 className="text-xl poppins-extrabold mb-6">CONTÁCTANOS</h3>
                         <form className="space-y-4">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <input
@@ -68,7 +68,7 @@ const Contacto: React.FC = () => {
                         style={{ height: 'fit-content' }}
                     >
                         <video
-                            src="/videos/aggmmp.mp4" 
+                            src="/videos/aggmmp.mp4"
                             controls
                             autoPlay
                             loop

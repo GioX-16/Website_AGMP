@@ -17,7 +17,7 @@ export default function Footer({ siteName = "Agromaps", logo }: FooterProps) {
                             <div className="mb-4">{logo}</div>
                         ) : (
                             <img
-                                src="/icons/lgo_footer.svg" 
+                                src="/icons/lgo_footer.svg"
                                 alt="Agromaps Logo"
                                 className="w-48 mb-4"
                             />
@@ -32,27 +32,17 @@ export default function Footer({ siteName = "Agromaps", logo }: FooterProps) {
 
                     <div className="col-span-1 md:col-span-3 grid grid-cols-2 md:grid-cols-3 gap-8">
                         <div>
-                            <h3 className="font-semibold text-white uppercase mb-4">Descargar App</h3>
+                            <h3 className="font-semibold text-white uppercase mb-4">Descargar App próximamente</h3>
                             <ul>
                                 <li className="mb-2"><a href="/careers" className="hover:text-white">Plataformas</a></li>
                                 <div className="flex space-x-3">
-                                    <img
-                                        src="/images/Footer/logo_playstore.png" 
-                                        alt="Google Play"
-                                        className="h-10"
-                                    />
-                                    <img
-                                        src="/images/Footer/logo_appstore.png" 
-                                        alt="App Store"
-                                        className="h-10"
-                                    />
                                 </div>
                             </ul>
                         </div>
                         <div>
                             <h3 className="font-semibold text-white uppercase mb-4">Contacto</h3>
-                            <ul>    
-                                <li className="mb-2"><a href="/features" className="hover:text-white">Agromaps@gmail.com </a></li>
+                            <ul>
+                                <li className="mb-2"><a href="/features" className="hover:text-white">contacto@agromapsnic.com</a></li>
                                 <li className="mb-2"><a href="/features" className="hover:text-white">Managua - Nicaragua</a></li>
                             </ul>
                         </div>
@@ -73,9 +63,8 @@ export default function Footer({ siteName = "Agromaps", logo }: FooterProps) {
                         © {new Date().getFullYear()} {siteName}. Todos los derechos reservados.
                     </p>
                     <div className="flex space-x-4">
-                        <a target="noopener" href="https://x.com/sandinoG1X" className="hover:text-white" aria-label="Twitter"><Twitter size={20} /></a>
-                        <a target="noopener" href="https://www.facebook.com/g2.giox1" className="hover:text-white" aria-label="Facebook"><Facebook size={20} /></a>
-                        <a target="noopener" href="https://www.instagram.com/sandi.giox/" className="hover:text-white" aria-label="Instagram"><Instagram size={20} /></a>
+                        <a target="noopener" href="https://www.facebook.com/profile.php?id=61566781988062" className="hover:text-white" aria-label="Facebook"><Facebook size={20} /></a>
+                        <a target="noopener" href="https://www.instagram.com/agromapas_nic/" className="hover:text-white" aria-label="Instagram"><Instagram size={20} /></a>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,6 @@
-import Header from "../components/Header";
+import Navbar from "../components/Navbar";
 import Home from "../components/Home";
 import Aprender from "../components/Aprender";
-import Apresuelo from "../components/Apresuelos";
 import IArecom from "../components/IArecom";
 import IABenefits from "../components/IABenefits";
 import IAStudies from "../components/Studies";
@@ -14,15 +13,14 @@ export default function Web2() {
     useScrollToTop();
 
     return (
-        <>
-            <Header />
+        <div className="overflow-x-hidden">
+            <Navbar />
             <Home />
             <Aprender />
-            <Apresuelo />
             <IArecom />
             <IABenefits />
             <IAStudies />
             <Footer />
-        </>
+        </div>
     );
 }

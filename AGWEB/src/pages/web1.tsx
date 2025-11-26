@@ -12,7 +12,7 @@ import Wedo from "../components/Wedo";
 
 export default function Web1() {
     return (
-        <>
+        <div className="overflow-x-hidden">
             <Navbar />
             <Hero />
             <About />
@@ -22,6 +22,6 @@ export default function Web1() {
             <Team />
             <Contacto />
             <Footer />
-        </>
+        </div>
     );
 }
